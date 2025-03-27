@@ -38,9 +38,9 @@ $result = $stmt->get_result();
         }
     </style>
     <script>
-        function confirmarEliminacion(id) {
+        function confirmarEliminacion(id,num_doc_est) {
             if (confirm('¿Está seguro que desea eliminar esta encuesta? Esta acción no se puede deshacer.')) {
-                window.location.href = 'deleteSurvey.php?id=' + id + '&campo=prepost';
+                window.location.href = 'deleteSurvey.php?id=' + id + '&campo=prepost&num_doc_est=' + num_doc_est;
             }
         }
     </script>
@@ -96,8 +96,12 @@ $result = $stmt->get_result();
                             <td>{$row['fecha_edit_prePostnatales']}</td> ";
                         echo "<td><a href='exportar/exportarIndivPrePos.php?id_prePost={$row['id_prePostnatales']}' class='btn btn-success'>Exportar</a></td>";
                         echo "
-                            <td><a href='#' onclick='confirmarEliminacion({$row['id_prePostnatales']})'><img src='../../img/delete1.png' width=28 height=28></a></td>
-                        </tr>";
+                        <td>
+                            <a href='#' onclick='confirmarEliminacion({$row['id_prePostnatales']}, {$row['num_doc_est']})'>
+                                <img src='../../img/delete1.png' width='28' height='28'>
+                            </a>
+                        </td>
+                    </tr>";
                         $i++;
                     }
                     ?>
