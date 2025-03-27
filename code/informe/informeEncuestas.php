@@ -121,7 +121,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
                 LEFT JOIN personal p ON e.num_doc_est = p.num_doc_est
                 LEFT JOIN preescolar pr ON e.num_doc_est = pr.num_doc_est
                 LEFT JOIN preguntas pg ON e.num_doc_est = pg.num_doc_est
-                LEFT JOIN prepostnatales pp ON e.num_doc_est = pp.num_doc_est
+                LEFT JOIN prePostnatales pp ON e.num_doc_est = pp.num_doc_est
                 GROUP BY ie.nombre_ie
                 HAVING total_registros > 0;
         ";
