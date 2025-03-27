@@ -228,6 +228,19 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
             </ul>
           </li>
 
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+                <i class="fa-solid fa-file"></i>
+              </span>
+              <span class="navlink">Informe Encuestas</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/informe/informeEncuestas.php" class="nav_link sublink">Ver Informes</a>
+            </ul>
+          </li>
 
           <li class="item">
             <div href="#" class="nav_link submenu_item">
@@ -780,6 +793,20 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
             </ul>
           </li>
 
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+                <i class="fa-solid fa-file"></i>
+              </span>
+              <span class="navlink">Informe Encuestas</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/informe/informeEncuestas.php" class="nav_link sublink">Ver Informes</a>
+            </ul>
+          </li>
+          
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
