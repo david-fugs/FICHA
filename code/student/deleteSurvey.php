@@ -7,7 +7,7 @@ $id = $_GET['id'];
 $campo = $_GET['campo'];
 
 if($campo == "prepost"){
-    $tabla = 'prepostnatales';
+    $tabla = 'prePostnatales';
     $id_campo = 'id_prePostnatales';
     $ruta = 'viewSurveys.php?num_doc_est=' . $_GET['num_doc_est'];
 }
