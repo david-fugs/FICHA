@@ -69,6 +69,9 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
         </center>
 
         <h1><b><img src="../../../img/baby.png" width=35 height=35> ACTUALIZAR INFORMACIÓN DEL ESTUDIANTE <img src="../../../img/baby.png" width=35 height=35></b></h1>
+        <button onclick="window.print()" class="btn btn-primary mb-3">
+            Imprimir formulario
+        </button>
         <p><i><b>
                     <font size=3 color=#c68615>* Datos obligatorios</i></b></font>
         </p>

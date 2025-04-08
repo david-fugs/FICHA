@@ -69,6 +69,9 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
         </center>
 
         <h1><b><img src="../../../img/baby.png" width=35 height=35> ACTUALIZAR INFORMACIÓN PREESCOLAR DEL ESTUDIANTE <img src="../../../img/baby.png" width=35 height=35></b></h1>
+        <button onclick="window.print()" class="btn btn-primary mb-3">
+            Imprimir formulario
+        </button>
         <p><i><b>
                     <font size=3 color=#c68615>* Datos obligatorios</i></b></font>
         </p>
@@ -160,8 +163,8 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                         <table class="table table-bordered table-info mt-4">
                             <thead>
                                 <tr class="table-header">
-                                <th style="width: 70%;" >Conceptos</th>
-                                <th  style="width:30%;">Avances</th>
+                                    <th style="width: 70%;">Conceptos</th>
+                                    <th style="width:30%;">Avances</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -252,8 +255,8 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                         <table class="table table-bordered table-info mt-4">
                             <thead>
                                 <tr class="table-header">
-                                <th style="width: 70%;" >Conceptos</th>
-                                <th  style="width:30%;">Avances</th>
+                                    <th style="width: 70%;">Conceptos</th>
+                                    <th style="width:30%;">Avances</th>
 
                                 </tr>
                             </thead>
@@ -333,8 +336,8 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                         <table class="table table-bordered table-info mt-4">
                             <thead>
                                 <tr class="table-header">
-                                <th style="width: 70%;" >Conceptos</th>
-                                <th  style="width:30%;">Avances</th>
+                                    <th style="width: 70%;">Conceptos</th>
+                                    <th style="width:30%;">Avances</th>
 
                                 </tr>
                             </thead>
