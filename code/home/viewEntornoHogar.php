@@ -10,16 +10,15 @@ $num_doc_est = $_GET['num_doc_est'];
 
 include("../../conexion.php");
 
-$query = "SELECT entornohogar.*, estudiantes.nom_ape_est 
+if ($mysqli->connect_error) {
+    die("Conexión fallida: " . $mysqli->connect_error);
+}
+$query = "SELECT *
 FROM entornohogar 
 JOIN estudiantes ON entornohogar.num_doc_est = estudiantes.num_doc_est
-WHERE entornohogar.num_doc_est = ?";
+WHERE entornohogar.num_doc_est = '$num_doc_est'";
 
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("s", $num_doc_est);
-$stmt->execute();
-$result = $stmt->get_result();
-
+$result = $mysqli->query($query);
 function Si1No2($value)
 {
     if ($value == 1) {
