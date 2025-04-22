@@ -7,14 +7,16 @@ if (!isset($_SESSION['id'])) {
 }
 
 $num_doc_est = $_GET['num_doc_est'];
-
 include("../../conexion.php");
+if ($mysqli->connect_error) {
+    die("Conexión fallida: " . $mysqli->connect_error);
+}
 
-$query = "SELECT * FROM familiasalud WHERE num_doc_est = ?";
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("s", $num_doc_est);
-$stmt->execute();
-$result = $stmt->get_result();
+// Opcional: para evitar inyección SQL (aunque no uses prepare)
+$num_doc_est = $mysqli->real_escape_string($num_doc_est);
+
+$query = "SELECT * FROM familiasalud WHERE num_doc_est = '$num_doc_est'";
+$result = $mysqli->query($query);
 
 function Si1No2($value)
 {
@@ -28,6 +30,7 @@ function Si1No2($value)
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -117,7 +120,7 @@ function Si1No2($value)
                         echo '<td>' . Si1No2($row['eps_estudiante_familiaSalud']) . '</td>';
                         echo "<td>{$row['nombre_eps_familiaSalud']}</td>
                         <td>{$row['cual_eps_familiaSalud']}</td>
-                        <td>{$row ['afiliado_eps_familiaSalud']}</td>";
+                        <td>{$row['afiliado_eps_familiaSalud']}</td>";
                         echo '<td>' . Si1No2($row['presenta_diagnostico_familiaSalud']) . '</td>';
                         echo "<td>{$row['diagnostico_familiaSalud']}</td>";
                         echo '<td>' . Si1No2($row['terapia_familiaSalud']) . '</td>';
