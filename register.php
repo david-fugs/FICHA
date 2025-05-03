@@ -68,6 +68,14 @@
     if (isset($_REQUEST['usuario'])){
         $usuario = stripslashes($_REQUEST['usuario']); // removes backslashes
         $usuario = mysqli_real_escape_string($mysqli, $usuario); //escapes special characters in a string
+        $query = "SELECT * FROM usuarios WHERE usuario='$usuario'";
+        $result = mysqli_query($mysqli, $query);
+        $rows = mysqli_num_rows($result);
+        if ($rows > 0) {
+            echo "<center><p style='border-radius: 20px;box-shadow: 10px 10px 5px #c68615; font-size: 23px; font-weight: bold;' >EL USUARIO YA EXISTE<br><br></p></center>
+                <div class='form' align='center'><h3>Regresar para intentar nuevamente... <br/><br/><center><a href='index.php'>Regresar</a></center></h3></div>";
+            exit;
+        }
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($mysqli, $password);
         $nombre = stripslashes($_REQUEST['nombre']);
@@ -78,7 +86,7 @@
         $result = mysqli_query($mysqli, $query);
         if ($result) {
             echo "<center><p style='border-radius: 20px;box-shadow: 10px 10px 5px #c68615; font-size: 23px; font-weight: bold;' >REGISTRO CREADO SATISFACTORIAMENTE<br><br></p></center>
-                <div class='form' align='center'><h3>Regresar para iniciar la sesión... <br/><br/><center><a href='index.php'>Regresar</a></center></h3></div>";
+                <div class='form' align='center'><h3>Pidele al rector de tu institucion para que te de Acceso... <br/><br/><center><a href='index.php'>Regresar</a></center></h3></div>";
         }
     } else {
 ?>
