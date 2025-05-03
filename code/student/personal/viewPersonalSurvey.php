@@ -10,11 +10,12 @@ $num_doc_est = $_GET['num_doc_est'];
 
 include("../../../conexion.php");
 
-$query = "SELECT * FROM personal WHERE num_doc_est = ?";
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("s", $num_doc_est);
-$stmt->execute();
-$result = $stmt->get_result();
+// Escapar el valor para mayor seguridad
+$num_doc_est = $mysqli->real_escape_string($num_doc_est);
+
+$query = "SELECT * FROM personal WHERE num_doc_est = '$num_doc_est'";
+$result = $mysqli->query($query);
+
 
 function Si1No2($value)
 {

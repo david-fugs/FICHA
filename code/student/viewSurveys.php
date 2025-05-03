@@ -9,12 +9,11 @@ if (!isset($_SESSION['id'])) {
 $num_doc_est = $_GET['num_doc_est'];
 
 include("../../conexion.php");
+// Escapar el valor para mayor seguridad
+$num_doc_est = $mysqli->real_escape_string($num_doc_est);
 
-$query = "SELECT * FROM prePostnatales WHERE num_doc_est = ?";
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("s", $num_doc_est);
-$stmt->execute();
-$result = $stmt->get_result();
+$query = "SELECT * FROM prePostnatales WHERE num_doc_est = '$num_doc_est'";
+$result = $mysqli->query($query);
 
 ?>
 
@@ -38,7 +37,7 @@ $result = $stmt->get_result();
         }
     </style>
     <script>
-        function confirmarEliminacion(id,num_doc_est) {
+        function confirmarEliminacion(id, num_doc_est) {
             if (confirm('¿Está seguro que desea eliminar esta encuesta? Esta acción no se puede deshacer.')) {
                 window.location.href = 'deleteSurvey.php?id=' + id + '&campo=prepost&num_doc_est=' + num_doc_est;
             }

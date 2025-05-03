@@ -10,16 +10,21 @@ include("../../conexion.php");
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "UPDATE usuarios SET estado_usu = 0 WHERE id = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $id);
-    if ($stmt->execute()) {
+
+    // Escapar el valor para evitar inyección SQL
+    $id = $mysqli->real_escape_string($id);
+
+    // Preparar la consulta SQL
+    $query = "UPDATE usuarios SET estado_usu = 0 WHERE id = '$id'";
+
+    if ($mysqli->query($query)) {
         header("Location: showusers.php");
         exit();
     } else {
-        echo "Error al inactivar el usuario: " . $stmt->error;
+        echo "Error al inactivar el usuario: " . $mysqli->error;
     }
 } else {
     echo "Usuario no proporcionado.";
 }
+
 ?>
