@@ -344,37 +344,14 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
       <div class="menu_content">
         <ul class="menu_items">
           <div class="menu_title menu_dahsboard"></div>
+          <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
+          <!-- start -->
+         
 
-          <li class="item">
-            <div href="#" class="nav_link submenu_item">
-              <span class="navlink_icon">
-                <i class="fa-solid fa-house-user"></i>
-              </span>
+        
 
-              <span class="navlink">Entorno Hogar - Vivienda</span>
-              <i class="bx bx-chevron-right arrow-left"></i>
-            </div>
 
-            <ul class="menu_items submenu">
-              <a href="code/home/showentornoHogar.php" class="nav_link sublink">Aplicar Encuesta</a>
-              <a href="code/home/checkentornoHogar.php" class="nav_link sublink">Encuestas Realizadas</a>
-            </ul>
-          </li>
-          <li class="item">
-            <div href="#" class="nav_link submenu_item">
-              <span class="navlink_icon">
-                <i class="fa-solid fa-people-roof"></i>
-              </span>
-
-              <span class="navlink">Salud y Familia</span>
-              <i class="bx bx-chevron-right arrow-left"></i>
-            </div>
-
-            <ul class="menu_items submenu">
-              <a href="code/student/showHealthFamily.php" class="nav_link sublink">Aplicar Encuesta</a>
-              <a href="code/student/checkHealthFamily.php" class="nav_link sublink">Encuestas Realizadas</a>
-            </ul>
-          </li>
+       
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
@@ -405,7 +382,37 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
               <a href="code/student/checkPerformance.php" class="nav_link sublink">Encuestas Realizadas</a>
             </ul>
           </li>
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+                <i class="fa-solid fa-baby"></i>
+              </span>
 
+              <span class="navlink">Desarrollo Preescolar</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/student/showPreescolar.php" class="nav_link sublink">Aplicar Encuesta</a>
+              <a href="code/student/preescolar/checkPreescolar.php" class="nav_link sublink">Encuestas Realizadas</a>
+            </ul>
+          </li>
+
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+                <i class="fa-solid fa-person"></i>
+              </span>
+
+              <span class="navlink">Desarrollo Personal</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/student/showPersonal.php" class="nav_link sublink">Aplicar Encuesta</a>
+              <a href="code/student/personal/checkPersonal.php" class="nav_link sublink">Encuestas Realizadas</a>
+            </ul>
+          </li>
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
@@ -419,6 +426,33 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
             <ul class="menu_items submenu">
               <a href="code/student/showQuestions.php" class="nav_link sublink">Aplicar Encuesta</a>
               <a href="code/student/question/checkQuestion.php" class="nav_link sublink">Encuestas Realizadas</a>
+            </ul>
+          </li>
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+                <i class="fa-solid fa-chart-pie"></i>
+              </span>
+              <span class="navlink">Cargar Estudiantes</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/uploadData/loadData.php" class="nav_link sublink">Subir Excel</a>
+            </ul>
+          </li>
+
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+                <i class="fa-solid fa-file"></i>
+              </span>
+              <span class="navlink">Informe Encuestas</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/informe/informeEncuestas.php" class="nav_link sublink">Ver Informes</a>
             </ul>
           </li>
 

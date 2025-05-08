@@ -39,6 +39,10 @@
           {
             header("Location: access.php");
           }
+          elseif($row['tipo_usuario']==3)
+          {
+            header("Location: access.php");
+          }
           elseif($row['tipo_usuario']==5)
           {
             header("Location: access.php");
