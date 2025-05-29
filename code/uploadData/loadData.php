@@ -102,34 +102,34 @@ $tipo_usu = $_SESSION['tipo_usu'];
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#uploadForm").submit(function(event) {
-                event.preventDefault(); // Evitar recarga de la página
+        // $(document).ready(function() {
+        //     $("#uploadForm").submit(function(event) {
+        //         event.preventDefault(); // Evitar recarga de la página
 
-                var formData = new FormData(this);
+        //         var formData = new FormData(this);
 
-                $("#loader").css("display", "flex").hide().fadeIn(); // 🔹 Asegura que sea flex y haga fadeIn
+        //         $("#loader").css("display", "flex").hide().fadeIn(); // 🔹 Asegura que sea flex y haga fadeIn
 
-                $.ajax({
-                    url: 'uploadStudents.php',
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        $("#loader").fadeOut(); // 🔹 Ocultar el loader cuando la petición termina
-                        $("#message").html('<p style="color: green;">Archivo procesado correctamente</p>');
-                    },
-                    error: function(xhr, status, error) {
-                        $("#loader").fadeOut();
-                        $("#message").html(
-                            '<p style="color: red;">Error al procesar el archivo: ' + error + '</p>' +
-                            '<p style="color: red;">Detalles: ' + xhr.responseText + '</p>'
-                        );
-                        console.error("Error:", error);
-                        console.error("Detalles:", xhr.responseText);
-                    }
-                });
-            });
-        });
+        //         $.ajax({
+        //             url: 'uploadStudents.php',
+        //             type: 'POST',
+        //             data: formData,
+        //             contentType: false,
+        //             processData: false,
+        //             success: function(response) {
+        //                 $("#loader").fadeOut(); // 🔹 Ocultar el loader cuando la petición termina
+        //                 $("#message").html('<p style="color: green;">Archivo procesado correctamente</p>');
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 $("#loader").fadeOut();
+        //                 $("#message").html(
+        //                     '<p style="color: red;">Error al procesar el archivo: ' + error + '</p>' +
+        //                     '<p style="color: red;">Detalles: ' + xhr.responseText + '</p>'
+        //                 );
+        //                 console.error("Error:", error);
+        //                 console.error("Detalles:", xhr.responseText);
+        //             }
+        //         });
+        //     });
+        // });
     </script>

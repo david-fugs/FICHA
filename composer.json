@@ -2,5 +2,10 @@
     "require": {
         "box/spout": "^3.3",
         "phpoffice/phpspreadsheet": "^1.24"
+    },
+    "config": {
+        "platform": {
+            "php": "8.0.30"
+        }
     }
 }

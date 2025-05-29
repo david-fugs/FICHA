@@ -1,4 +1,5 @@
 <?php
+
 require '../../vendor/autoload.php';
 ini_set('memory_limit', '-1');
 ini_set('max_execution_time', 300);
@@ -19,57 +20,127 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $loteDatos = [];
     $contadorRegistros = 0;
     $loteTamano = 1000;
-    
+
     foreach ($reader->getSheetIterator() as $sheet) {
         foreach ($sheet->getRowIterator() as $row) {
-            $data = [];
-            foreach ($row->getCells() as $cell) {
-                $data[] = $cell->getValue();
-            }
-
             if ($contadorRegistros == 0) {
                 $contadorRegistros++;
-                continue;
+                continue; // saltamos la fila de encabezados
             }
 
+            $cell = $row->getCellAtIndex(0); // Columna CH
+            $cellValue = $cell ? $cell->getValue() : null;
+
+            $data = str_getcsv($cellValue);
+            // Limpiar paréntesis y comillas innecesarias
+            $data = array_map(function ($val) {
+                $val = trim($val);                // eliminar espacios
+                $val = trim($val, "'");           // eliminar comillas simples
+                $val = trim($val, "()");          // eliminar paréntesis
+                return $val;
+            }, $data);
+
+            // Asegurarte de que solo tomas los primeros 33 valores necesarios
+            $data = array_slice($data, 0, 33);
+            if (count($data) < 33) {
+                continue; // evita errores si hay datos incompletos
+            }
+
+
             list(
-                $num_doc_est, $tip_doc_est, $fecha_dig_est, $mun_dig_est, $nom_ape_est, $fec_nac_est, 
-                $ciu_nac_est, $dir_est, $mun_res_est, $estrato_est, $zona_est, $tel1_est, $tel2_est, 
-                $email_est, $est_civ_est, $gen_est, $eps_est, $med_trans_est, $sisben_est, 
-                $cod_dane_ieSede, $obs_est, $poblacion_vulnerable_est, $discapacidad_est, 
-                $capacidad_est, $trastorno_est, $etnia_est, $victima_est, $jornada_est, 
-                $caracter_media_est, $especialidad_caracter_est, $grado_est, $nom_grado_est
+                $num_doc_est,
+                $tip_doc_est,
+                $fecha_dig_est,
+                $mun_dig_est,
+                $nom_ape_est,
+                $fec_nac_est,
+                $ciu_nac_est,
+                $dir_est,
+                $mun_res_est,
+                $estrato_est,
+                $zona_est,
+                $tel1_est,
+                $tel2_est,
+                $email_est,
+                $est_civ_est,
+                $gen_est,
+                $eps_est,
+                $med_trans_est,
+                $sisben_est,
+                $cod_dane_ieSede,
+                $obs_est,
+                $poblacion_vulnerable_est,
+                $discapacidad_est,
+                $capacidad_est,
+                $trastorno_est,
+                $etnia_est,
+                $victima_est,
+                $jornada_est,
+                $caracter_media_est,
+                $especialidad_caracter_est,
+                $grado_est,
+                $nom_grado_est
             ) = $data;
 
             $fecha_alta_est = date('Y-m-d H:i:s');
             $id_usu = 1;
-            
+
+            // Convertir fecha numérica o formato string
             if (is_numeric($fec_nac_est)) {
                 $unixDate = ($fec_nac_est - 25569) * 86400;
                 $fec_nac_est = date("Y-m-d", $unixDate);
             } else {
-                $dateTime = DateTime::createFromFormat("m/d/Y", $fec_nac_est);
-                if ($dateTime) {
-                    $fec_nac_est = $dateTime->format("Y-m-d");
-                } else {
-                    $fec_nac_est = null;
-                }
+                $dateTime = DateTime::createFromFormat("Y-m-d", $fec_nac_est) ?: DateTime::createFromFormat("m/d/Y", $fec_nac_est);
+                $fec_nac_est = $dateTime ? $dateTime->format("Y-m-d") : null;
             }
 
-            $loteDatos[] = "('$num_doc_est', '$tip_doc_est', '$fecha_dig_est', '$mun_dig_est', '$nom_ape_est', '$fec_nac_est',
-                            '$ciu_nac_est', '$dir_est', '$mun_res_est', '$estrato_est', '$zona_est', '$tel1_est', '$tel2_est',
-                            '$email_est', '$est_civ_est', '$gen_est', '$eps_est', '$med_trans_est', '$sisben_est',
-                            '$cod_dane_ieSede', '$obs_est', '$poblacion_vulnerable_est', '$discapacidad_est',
-                            '$capacidad_est', '$trastorno_est', '$etnia_est', '$victima_est', '$jornada_est',
-                            '$caracter_media_est', '$especialidad_caracter_est', '$grado_est', '$nom_grado_est', '$id_usu')";
+            // Aquí guardamos un array con datos crudos, sin comillas ni paréntesis
+            $loteDatos[] = [
+                $num_doc_est,
+                $tip_doc_est,
+                $fecha_dig_est,
+                $mun_dig_est,
+                $nom_ape_est,
+                $fec_nac_est,
+                $ciu_nac_est,
+                $dir_est,
+                $mun_res_est,
+                $estrato_est,
+                $zona_est,
+                $tel1_est,
+                $tel2_est,
+                $email_est,
+                $est_civ_est,
+                $gen_est,
+                $eps_est,
+                $med_trans_est,
+                $sisben_est,
+                $cod_dane_ieSede,
+                $obs_est,
+                $poblacion_vulnerable_est,
+                $discapacidad_est,
+                $capacidad_est,
+                $trastorno_est,
+                $etnia_est,
+                $victima_est,
+                $jornada_est,
+                $caracter_media_est,
+                $especialidad_caracter_est,
+                $grado_est,
+                $nom_grado_est,
+                $id_usu
+            ];
 
             $contadorRegistros++;
+            if ($contadorRegistros % 1000 == 0) {
+                echo "Procesados $contadorRegistros registros...<br>";
+                flush();
+                ob_flush();
+            }
+
 
             if (count($loteDatos) >= $loteTamano) {
                 procesarLote($loteDatos, $mysqli);
-                echo json_encode(["progreso" => $contadorRegistros]);
-                flush();
-                ob_flush();
                 $loteDatos = [];
             }
         }
@@ -84,16 +155,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     flush();
     ob_flush();
 }
-
-function procesarLote($loteDatos, $mysqli)
+function procesarLote(array $loteDatos, mysqli $mysqli)
 {
+    if (empty($loteDatos)) return;
+
+    $valuesList = [];
+
+    foreach ($loteDatos as $fila) {
+        $escaped = array_map(function ($valor) use ($mysqli) {
+            return "'" . $mysqli->real_escape_string($valor) . "'";
+        }, $fila);
+        $valuesList[] = "(" . implode(", ", $escaped) . ")";
+    }
+
+    $valuesString = implode(", ", $valuesList);
+
     $sql = "INSERT INTO estudiantes (
         num_doc_est, tip_doc_est, fecha_dig_est, mun_dig_est, nom_ape_est, fec_nac_est, ciu_nac_est,
         dir_est, mun_res_est, estrato_est, zona_est, tel1_est, tel2_est, email_est, est_civ_est,
         gen_est, eps_est, med_trans_est, sisben_est, cod_dane_ieSede, obs_est, poblacion_vulnerable_est,
         discapacidad_est, capacidad_est, trastorno_est, etnia_est, victima_est, jornada_est,
         caracter_media_est, especialidad_caracter_est, grado_est, nom_grado_est, id_usu
-    ) VALUES " . implode(", ", $loteDatos) . " 
+    ) VALUES $valuesString
     ON DUPLICATE KEY UPDATE 
         tip_doc_est = VALUES(tip_doc_est),
         fecha_dig_est = VALUES(fecha_dig_est),
@@ -126,9 +209,15 @@ function procesarLote($loteDatos, $mysqli)
         especialidad_caracter_est = VALUES(especialidad_caracter_est),
         grado_est = VALUES(grado_est),
         nom_grado_est = VALUES(nom_grado_est),
-        id_usu = VALUES(id_usu)";
+        id_usu = VALUES(id_usu)
+    ";
 
     if (!$mysqli->query($sql)) {
-        die(json_encode(["error" => "Error al insertar datos: " . $mysqli->error]));
+        echo "Error en inserción de lote: " . $mysqli->error . "<br>";
+    } else {
+        echo "Insertado lote de " . count($loteDatos) . " registros<br>";
     }
+
+    flush();
+    ob_flush();
 }
