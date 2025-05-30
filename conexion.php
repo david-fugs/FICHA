@@ -1,6 +1,6 @@
 <?php
 	
-	$mysqli = new mysqli("localhost", "aprendad_fiee", "~CY]&J9u#wxa", "aprendad_fiee");
+	$mysqli = new mysqli("localhost", "softepuc_fie", "~CY]&J9u#wxa", "softepuc_fie");
 	// Verificar conexión
 // Verificar conexión
 if ($mysqli->connect_error) {
