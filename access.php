@@ -637,29 +637,11 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
       <div class="menu_content">
         <ul class="menu_items">
           <div class="menu_title menu_dahsboard"></div>
-
-          <li class="item">
-            <div href="#" class="nav_link submenu_item">
-              <span class="navlink_icon">
-                <i class="fa-solid fa-address-card"></i>
-              </span>
-
-              <span class="navlink">SIMAT Info. General</span>
-              <i class="bx bx-chevron-right arrow-left"></i>
-            </div>
-
-            <ul class="menu_items submenu">
-              <a href="code/student/showsimat.php" class="nav_link sublink">Actualizar Datos</a></a>
-              <a href="code/student/checksimat.php" class="nav_link sublink">Estudiantes Actualizados</a>
-            </ul>
-          </li>
-
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
                 <i class="fa-solid fa-baby-carriage"></i>
               </span>
-
               <span class="navlink">Pre Post-Natales</span>
               <i class="bx bx-chevron-right arrow-left"></i>
             </div>
