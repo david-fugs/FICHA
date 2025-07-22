@@ -15,11 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $reader = ReaderEntityFactory::createXLSXReader();
     $reader->open($tempFile);
 
-    include("../../conexion.php");
-
-    $loteDatos = [];
+    include("../../conexion.php");    $loteDatos = [];
     $contadorRegistros = 0;
     $loteTamano = 1000;
+    $numerosDocumentoEnArchivo = []; // Array para almacenar los números de documento del archivo
 
     foreach ($reader->getSheetIterator() as $sheet) {
         foreach ($sheet->getRowIterator() as $row) {
@@ -80,10 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $especialidad_caracter_est,
                 $grado_est,
                 $nom_grado_est
-            ) = $data;
-
-            $fecha_alta_est = date('Y-m-d H:i:s');
+            ) = $data;            $fecha_alta_est = date('Y-m-d H:i:s');
             $id_usu = 1;
+
+            // Agregar el número de documento al array de seguimiento
+            $numerosDocumentoEnArchivo[] = $num_doc_est;
 
             // Convertir fecha numérica o formato string
             if (is_numeric($fec_nac_est)) {
@@ -92,9 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $dateTime = DateTime::createFromFormat("Y-m-d", $fec_nac_est) ?: DateTime::createFromFormat("m/d/Y", $fec_nac_est);
                 $fec_nac_est = $dateTime ? $dateTime->format("Y-m-d") : null;
-            }
-
-            // Aquí guardamos un array con datos crudos, sin comillas ni paréntesis
+            }            // Aquí guardamos un array con datos crudos, sin comillas ni paréntesis
             $loteDatos[] = [
                 $num_doc_est,
                 $tip_doc_est,
@@ -136,10 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "Procesados $contadorRegistros registros...<br>";
                 flush();
                 ob_flush();
-            }
-
-
-            if (count($loteDatos) >= $loteTamano) {
+            }            if (count($loteDatos) >= $loteTamano) {
                 procesarLote($loteDatos, $mysqli);
                 $loteDatos = [];
             }
@@ -150,6 +145,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($loteDatos)) {
         procesarLote($loteDatos, $mysqli);
     }
+
+    // Actualizar los estudiantes que NO están en el archivo Excel
+    actualizarEstudiantesNoEnArchivo($numerosDocumentoEnArchivo, $mysqli);
 
     echo json_encode(["finalizado" => "Carga completada"]);
     flush();
@@ -168,9 +166,7 @@ function procesarLote(array $loteDatos, mysqli $mysqli)
         $valuesList[] = "(" . implode(", ", $escaped) . ")";
     }
 
-    $valuesString = implode(", ", $valuesList);
-
-    $sql = "INSERT INTO estudiantes (
+    $valuesString = implode(", ", $valuesList);    $sql = "INSERT INTO estudiantes (
         num_doc_est, tip_doc_est, fecha_dig_est, mun_dig_est, nom_ape_est, fec_nac_est, ciu_nac_est,
         dir_est, mun_res_est, estrato_est, zona_est, tel1_est, tel2_est, email_est, est_civ_est,
         gen_est, eps_est, med_trans_est, sisben_est, cod_dane_ieSede, obs_est, poblacion_vulnerable_est,
@@ -209,13 +205,51 @@ function procesarLote(array $loteDatos, mysqli $mysqli)
         especialidad_caracter_est = VALUES(especialidad_caracter_est),
         grado_est = VALUES(grado_est),
         nom_grado_est = VALUES(nom_grado_est),
-        id_usu = VALUES(id_usu)
+        id_usu = VALUES(id_usu),
+        fecha_edit_est = NOW()
     ";
 
     if (!$mysqli->query($sql)) {
         echo "Error en inserción de lote: " . $mysqli->error . "<br>";
     } else {
         echo "Insertado lote de " . count($loteDatos) . " registros<br>";
+    }
+
+    flush();
+    ob_flush();
+}
+function actualizarEstudiantesNoEnArchivo(array $numerosDocumentoEnArchivo, mysqli $mysqli)
+{
+    if (empty($numerosDocumentoEnArchivo)) {
+        echo "No hay documentos en el archivo para comparar<br>";
+        return;
+    }
+
+    // Escapar los números de documento para la consulta
+    $numerosEscapados = array_map(function($num) use ($mysqli) {
+        return "'" . $mysqli->real_escape_string($num) . "'";
+    }, $numerosDocumentoEnArchivo);
+
+    $numerosString = implode(", ", $numerosEscapados);
+
+    // Actualizar los estudiantes que NO están en la lista del archivo
+    $sqlUpdate = "UPDATE estudiantes SET 
+        estado_prepostnatales = 1,
+        estado_entornohogar = 1,
+        estado_familiasalud = 1,
+        estado_educacion = 1,
+        estado_desempeno = 1,
+        estado_preescolar = 1,
+        estado_personal = 1,
+        estado_preguntas = 1,
+        estado_est = 0
+        WHERE num_doc_est NOT IN ($numerosString)";
+
+    if (!$mysqli->query($sqlUpdate)) {
+        echo "Error al actualizar estudiantes no en archivo: " . $mysqli->error . "<br>";
+    } else {
+        $registrosAfectados = $mysqli->affected_rows;
+        echo "Actualizados $registrosAfectados estudiantes que no estaban en el archivo<br>";
     }
 
     flush();

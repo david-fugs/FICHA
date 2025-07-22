@@ -95,7 +95,7 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
 
         <div class="flex">
             <div class="box">
-                <form action="showPerformance.php" method="get">
+                <form action="showPreescolar.php" method="get">
                     <input name="num_doc_est" type="text" placeholder="Ingrese el Documento" size=20>
                     <input name="nom_ape_est" type="text" placeholder="Escriba el nombre del estudiante" size=30>
                     <input name="grado_est" type="text" placeholder="Grado">
