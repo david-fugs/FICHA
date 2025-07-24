@@ -90,21 +90,22 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                         <label for="mun_dig_familiaSalud">* MUNICIPIO DILIGENCIAMIENTO:</label>
                         <select name='mun_dig_familiaSalud' class='form-control' id='selectMunicipio' required />
                         <option value=''></option>
-                        <?php
-                        header('Content-Type: text/html;charset=utf-8');
-                        $consulta = 'SELECT * FROM municipios';
-                        $res = mysqli_query($mysqli, $consulta);
-                        $num_reg = mysqli_num_rows($res);
-                        while ($row1 = $res->fetch_array()) {
-                        ?>
-                            <option value='<?php echo $row1['nombre_mun']; ?>' <?php if ($row['mun_dig_prePostnatales'] == $row1['nombre_mun']) {
-                                                                                    echo 'selected';
-                                                                                } ?>>
-                                <?php echo $row1['nombre_mun']; ?>
-                            </option>
-                        <?php
-                        }
-                        ?>
+                             <option value=''></option>
+                            <?php
+                            header('Content-Type: text/html;charset=utf-8');
+                            $consulta = 'SELECT * FROM municipios';
+                            $res = mysqli_query($mysqli, $consulta);
+                            $num_reg = mysqli_num_rows($res);
+                            $selected_mun = isset($row['mun_dig_est']) ? $row['mun_dig_est'] : '';
+                            while ($row1 = $res->fetch_array()) {
+                                $is_selected = ($selected_mun == $row1['nombre_mun']) ? 'selected' : '';
+                            ?>
+                                <option value='<?php echo $row1['nombre_mun']; ?>' <?php echo $is_selected; ?>>
+                                    <?php echo $row1['nombre_mun']; ?>
+                                </option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="col-12 col-sm-4">
