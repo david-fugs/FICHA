@@ -658,7 +658,7 @@ function Si1No2($value)
                                         </tr>
                                         
                                         <tr>
-                                            <td>Matematicas</td>
+                                            <td>Matematicas Calculo Algebra</td>
                                             <td>
                                              <select  class="form-control" name="comprension_matematicas_desempeno">
                                                 <option  value="bajo" <?php
@@ -793,7 +793,7 @@ function Si1No2($value)
                                             </td>
                                         </tr>
                                         
-                                        <tr>
+                                        <!-- <tr>
                                             <td>Algebra</td>
                                             <td>
                                              <select  class="form-control" name="comprension_algebra_desempeno">
@@ -927,7 +927,7 @@ function Si1No2($value)
                                                     echo 'selected';  }?>>Desempeño Superior</option>
                                              </select>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         
                                         <tr>
                                             <td>Ingles</td>

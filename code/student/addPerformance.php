@@ -94,11 +94,11 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                         $consulta = 'SELECT * FROM municipios';
                         $res = mysqli_query($mysqli, $consulta);
                         $num_reg = mysqli_num_rows($res);
+                        $selected_mun = isset($row['mun_dig_est']) ? $row['mun_dig_est'] : '';
                         while ($row1 = $res->fetch_array()) {
+                            $is_selected = ($selected_mun == $row1['nombre_mun']) ? 'selected' : '';
                         ?>
-                            <option value='<?php echo $row1['nombre_mun']; ?>' <?php if ($row['mun_dig_prePostnatales'] == $row1['nombre_mun']) {
-                                                                                    echo 'selected';
-                                                                                } ?>>
+                            <option value='<?php echo $row1['nombre_mun']; ?>' <?php echo $is_selected; ?>>
                                 <?php echo $row1['nombre_mun']; ?>
                             </option>
                         <?php
@@ -172,38 +172,38 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                                 <tr>
                                     <td>Ciencias Naturales</td>
                                     <td>
-                                        <select  class="form-control" name="comprension_ciencia_desempeno">
-                                            <option   value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="comprension_ciencia_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="participacion_ciencia_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="participacion_ciencia_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="aplicacion_ciencia_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="aplicacion_ciencia_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="consistencia_ciencia_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="consistencia_ciencia_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
@@ -211,38 +211,38 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                                 <tr>
                                     <td>Ciencias Sociales</td>
                                     <td>
-                                        <select  class="form-control" name="comprension_sociales_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="comprension_sociales_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="participacion_sociales_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="participacion_sociales_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="aplicacion_sociales_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="aplicacion_sociales_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="consistencia_sociales_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="consistencia_sociales_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
@@ -250,38 +250,38 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                                 <tr>
                                     <td>Educacion Fisica</td>
                                     <td>
-                                        <select  class="form-control" name="comprension_edufisica_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="comprension_edufisica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="participacion_edufisica_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="participacion_edufisica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="aplicacion_edufisica_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="aplicacion_edufisica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="consistencia_edufisica_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="consistencia_edufisica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
@@ -290,244 +290,244 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                                 <tr>
                                     <td>Etica y Valores</td>
                                     <td>
-                                        <select  class="form-control" name="comprension_etica_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="comprension_etica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="participacion_etica_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="participacion_etica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="aplicacion_etica_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="aplicacion_etica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select  class="form-control" name="consistencia_etica_desempeno">
-                                            <option  value="bajo">Desempeño Bajo</option>
-                                            <option  value="basico">Desempeño Básico</option>
-                                            <option  value="alto">Desempeño Alto</option>
-                                            <option  value="superior">Desempeño Superior</option>
+                                        <select class="form-control" name="consistencia_etica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
                                             <option value="no aplica">No Aplica</option>
                                         </select>
                                     </td>
                                 </tr>
 
-                                    <tr>
-                                        <td>Religion</td>
-                                        <td>
-                                            <select  class="form-control" name="comprension_religion_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select  class="form-control" name="participacion_religion_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select  class="form-control" name="aplicacion_religion_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select  class="form-control" name="consistencia_religion_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                            </select>
-                                        </td>
-                               </tr>
+                                <tr>
+                                    <td>Religion</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_religion_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_religion_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_religion_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_religion_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
 
-                                 <tr>
-                                        <td>Artistica</td>
-                                        <td>
-                                         <select  class="form-control" name="comprension_artistica_desempeno">
-                                              <option  value="bajo">Desempeño Bajo</option>
-                                              <option  value="basico">Desempeño Básico</option>
-                                              <option  value="alto">Desempeño Alto</option>
-                                              <option  value="superior">Desempeño Superior</option>
-                                              <option value="no aplica">No Aplica</option>
-                                         </select>
-                                        </td>
-                                        <td>
-                                         <select  class="form-control" name="participacion_artistica_desempeno">
-                                              <option  value="bajo">Desempeño Bajo</option>
-                                              <option  value="basico">Desempeño Básico</option>
-                                              <option  value="alto">Desempeño Alto</option>
-                                              <option  value="superior">Desempeño Superior</option>
-                                              <option value="no aplica">No Aplica</option>
-                                         </select>
-                                        </td>
-                                        <td>
-                                         <select  class="form-control" name="aplicacion_artistica_desempeno">
-                                              <option  value="bajo">Desempeño Bajo</option>
-                                              <option  value="basico">Desempeño Básico</option>
-                                              <option  value="alto">Desempeño Alto</option>
-                                              <option  value="superior">Desempeño Superior</option>
-                                              <option value="no aplica">No Aplica</option>
-                                         </select>
-                                        </td>
-                                        <td>
-                                         <select  class="form-control" name="consistencia_artistica_desempeno">
-                                              <option  value="bajo">Desempeño Bajo</option>
-                                              <option  value="basico">Desempeño Básico</option>
-                                              <option  value="alto">Desempeño Alto</option>
-                                              <option  value="superior">Desempeño Superior</option>
-                                              <option value="no aplica">No Aplica</option>
-                                         </select>
-                                        </td>
-                                  </tr>
+                                <tr>
+                                    <td>Artistica</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_artistica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_artistica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_artistica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_artistica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
 
-                                    <tr>
-                                            <td>Humanidades</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_humanidades_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_humanidades_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_humanidades_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_humanidades_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>Humanidades</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_humanidades_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_humanidades_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_humanidades_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_humanidades_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
 
-                                        <tr>
-                                            <td>Matematicas</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_matematicas_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_matematicas_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_matematicas_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_matematicas_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>Matematicas Calculo Algebra </td>
+                                    <td>
+                                        <select class="form-control" name="comprension_matematicas_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_matematicas_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_matematicas_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_matematicas_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
 
-                                        <tr>
-                                            <td>Fisica</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_fisica_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_fisica_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_fisica_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_fisica_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>Fisica</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_fisica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_fisica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_fisica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_fisica_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
 
-                                        <tr>
+                                <!-- <tr>
                                             <td>Algebra</td>
                                             <td>
                                              <select  class="form-control" name="comprension_algebra_desempeno">
@@ -565,9 +565,9 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                                                 <option value="no aplica">No Aplica</option>
                                              </select>
                                             </td>
-                                        </tr>
+                                        </tr> -->
 
-                                        <tr>
+                                <!-- <tr>
                                             <td>Calculo</td>
                                             <td>
                                              <select  class="form-control" name="comprension_calculo_desempeno">
@@ -605,247 +605,247 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                                                 <option value="no aplica">No Aplica</option>
                                              </select>
                                             </td>
-                                        </tr>
+                                        </tr> -->
 
-                                        <tr>
-                                            <td>Ingles</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_ingles_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_ingles_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_ingles_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_ingles_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>Ingles</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_ingles_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_ingles_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_ingles_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_ingles_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
 
-                                        <tr>
-                                            <td>Tecnologia e Informatica</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_tecno_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_tecno_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_tecno_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_tecno_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
-                                        <!-- emprendimiento -->
-                                        <tr>
-                                            <td>Emprendimiento</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_emprendimiento_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_emprendimiento_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_emprendimiento_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_emprendimiento_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>Tecnologia e Informatica</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_tecno_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_tecno_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_tecno_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_tecno_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <!-- emprendimiento -->
+                                <tr>
+                                    <td>Emprendimiento</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_emprendimiento_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_emprendimiento_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_emprendimiento_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_emprendimiento_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
 
-                                        <tr>
-                                            <td>Areas Tecnicas</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_areastec_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_areastec_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_areastec_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_areastec_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>Areas Tecnicas</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_areastec_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_areastec_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_areastec_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_areastec_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
 
-                                        <tr>
-                                            <td>Filosofia</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_filosofia_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_filosofia_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_filosofia_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_filosofia_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
-                                        <!-- ciencias economicas -->
-                                        <tr>
-                                            <td>Ciencias Economicas</td>
-                                            <td>
-                                             <select  class="form-control" name="comprension_cienciaseco_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="participacion_cienciaseco_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="aplicacion_cienciaseco_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                            <td>
-                                             <select  class="form-control" name="consistencia_cienciaseco_desempeno">
-                                                <option  value="bajo">Desempeño Bajo</option>
-                                                <option  value="basico">Desempeño Básico</option>
-                                                <option  value="alto">Desempeño Alto</option>
-                                                <option  value="superior">Desempeño Superior</option>
-                                                <option value="no aplica">No Aplica</option>
-                                             </select>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>Filosofia</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_filosofia_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_filosofia_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_filosofia_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_filosofia_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <!-- ciencias economicas -->
+                                <tr>
+                                    <td>Ciencias Economicas</td>
+                                    <td>
+                                        <select class="form-control" name="comprension_cienciaseco_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="participacion_cienciaseco_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="aplicacion_cienciaseco_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="consistencia_cienciaseco_desempeno">
+                                            <option value="bajo">Desempeño Bajo</option>
+                                            <option value="basico">Desempeño Básico</option>
+                                            <option value="alto">Desempeño Alto</option>
+                                            <option value="superior">Desempeño Superior</option>
+                                            <option value="no aplica">No Aplica</option>
+                                        </select>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
