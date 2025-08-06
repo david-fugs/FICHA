@@ -15,6 +15,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -94,6 +95,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
         });
     </script>
 </head>
+
 <body>
     <?php
     include("../../conexion.php");
@@ -303,7 +305,9 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
         <button onclick="window.print()" class="btn btn-primary mb-3">
             Imprimir formulario
         </button>
-        <p><i><b><font size=3 color=#c68615>* Datos obligatorios</i></b></font></p>
+        <p><i><b>
+                    <font size=3 color=#c68615>* Datos obligatorios</i></b></font>
+        </p>
 
         <form action='addentornoHogar1.php' method="POST">
             <hr style="border: 2px solid #16087B; border-radius: 2px;">
@@ -484,7 +488,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
                 <div class="row">
                     <div class="col-12 col-sm-4">
                         <label for="cuidador_estu_hog">* NOMBRES Y APELLIDOS CUIDADOR:</label>
-                        <input type='text' name='cuidador_estu_hog' id="cuidador_estu_hog" class='form-control' value='<?php echo utf8_encode($row['cuidador_estu_hog']); ?>' required/>
+                        <input type='text' name='cuidador_estu_hog' id="cuidador_estu_hog" class='form-control' value='<?php echo utf8_encode($row['cuidador_estu_hog']); ?>' required />
                     </div>
                     <div class="col-12 col-sm-2">
                         <label for="parentesco_cuid_estu_hog">* PARENTESCO CUIDADOR:</label>
@@ -539,7 +543,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
                     </div>
                     <div class="col-12 col-sm-2">
                         <label for="tel_cuid_estu_hog">* CONTACTO CUIDADOR:</label>
-                        <input type='number' name='tel_cuid_estu_hog' id="tel_cuid_estu_hog" class='form-control' value='<?php echo utf8_encode($row['tel_cuid_estu_hog']); ?>' required/>
+                        <input type='number' name='tel_cuid_estu_hog' id="tel_cuid_estu_hog" class='form-control' value='<?php echo utf8_encode($row['tel_cuid_estu_hog']); ?>' required />
                     </div>
                     <div class="col-12 col-sm-3">
                         <label for="email_cuid_estu_hog">EMAIL CUIDADOR:</label>
@@ -935,6 +939,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
         </form>
     </div>
 </body>
+
 </html>
 
 <?php
