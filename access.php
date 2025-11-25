@@ -245,6 +245,20 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
+                <i class="fa-solid fa-chart-bar"></i>
+              </span>
+              <span class="navlink">Cantidad Encuestas por Sede</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/informe/cantidadEncuestasPorSede.php" class="nav_link sublink">Ver Cantidades</a>
+            </ul>
+          </li>
+
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
               </span>
               <span class="navlink">Mi Cuenta</span>
@@ -459,6 +473,20 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
+                <i class="fa-solid fa-chart-bar"></i>
+              </span>
+              <span class="navlink">Cantidad Encuestas por Sede</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/informe/cantidadEncuestasPorSede.php" class="nav_link sublink">Ver Cantidades</a>
+            </ul>
+          </li>
+
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
               </span>
               <span class="navlink">Mi Cuenta</span>
@@ -631,6 +659,20 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
             <ul class="menu_items submenu">
               <a href="code/student/showQuestions.php" class="nav_link sublink">Aplicar Encuesta</a>
               <a href="code/student/question/checkQuestion.php" class="nav_link sublink">Encuestas Realizadas</a>
+            </ul>
+          </li>
+
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+                <i class="fa-solid fa-chart-bar"></i>
+              </span>
+              <span class="navlink">Cantidad Encuestas por Sede</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/informe/cantidadEncuestasPorSede.php" class="nav_link sublink">Ver Cantidades</a>
             </ul>
           </li>
 
