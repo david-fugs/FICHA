@@ -196,7 +196,7 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                         <td data-label="GRADO">' . $row['grado_est'] . '</td>
                     ';
                     echo '
-                        <td data-label="APLICAR"><a href="preescolar/addPreescolar.php?num_doc_est=' . $row['num_doc_est'] . '"><img src="../../img/aplicar.png" width=28 height=28></a></td>
+                        <td data-label="APLICAR"><a href="preescolar/addPreescolar.php?num_doc_est=' . $row['num_doc_est'] . '"target="_blank"><img src="../../img/aplicar.png" width=28 height=28></a></td>
                         ';
                     echo '
                         <td data-label="ELIMINAR"><a href="#" onclick="cambiarEstado(' . $row['num_doc_est'] . ')"><img src="../../img/delete1.png" width=28 height=28></a></td>

@@ -187,7 +187,7 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                         <td data-label="DTO">' . $row['num_doc_est'] . '</td>
                         <td data-label="ESTUDIANTE">' . utf8_encode($row['nom_ape_est']) . '</td>
                         <td data-label="GRADO">' . $row['grado_est'] . '</td>
-                        <td data-label="APLICAR"><a href="addprePostnatales.php?num_doc_est=' . $row['num_doc_est'] . '"><img src="../../img/aplicar.png" width=28 height=28></a></td>
+                        <td data-label="APLICAR"><a href="addprePostnatales.php?num_doc_est=' . $row['num_doc_est'] . '" target="_blank"><img src="../../img/aplicar.png" width=28 height=28></a></td>
                         <td data-label="ELIMINAR"><a href="#" onclick="cambiarEstado(' . $row['num_doc_est'] . ')"><img src="../../img/delete1.png" width=28 height=28></a></td>
                         <td data-label="REALIZADO" class="' . $clase_estado . '">' . $estado_encuesta . '</td>
                     </tr>';

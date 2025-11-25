@@ -614,6 +614,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
                                     <input type="checkbox" name="niveles_educativos_herm_ie_estu_hog[]" value="9" <?php echo in_array('9', $niveles_educativos_seleccionados) ? 'checked' : ''; ?>> 9<br>
                                     <input type="checkbox" name="niveles_educativos_herm_ie_estu_hog[]" value="10" <?php echo in_array('10', $niveles_educativos_seleccionados) ? 'checked' : ''; ?>> 10<br>
                                     <input type="checkbox" name="niveles_educativos_herm_ie_estu_hog[]" value="11" <?php echo in_array('11', $niveles_educativos_seleccionados) ? 'checked' : ''; ?>> 11<br>
+                                    <input type="checkbox" name="niveles_educativos_herm_ie_estu_hog[]" value="N/A" <?php echo in_array('N/A', $niveles_educativos_seleccionados) ? 'checked' : ''; ?>> N/A<br>
                                 </div>
                             </div>
                         </div>
