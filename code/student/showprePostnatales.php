@@ -107,7 +107,44 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
             </div>
         </div>
 
-        <br /><a href="../../access.php"><img src='../../img/atras.png' width="72" height="72" title="Regresar" /></a>
+        <br />
+        <div class="d-flex justify-content-center align-items-center mb-5">
+            <a class="ml-4" href="downloadTemplatePrePostnatales.php" style="text-decoration: none;">
+                <button class="btn btn-success" style="height: 80px; padding: 10px 20px;">
+                    <i class="fa fa-download"></i><br>
+                    <strong>Descargar<br>Plantilla Excel</strong>
+                </button>
+            </a>
+            <a class="ml-2" href="#" onclick="document.getElementById('uploadForm').style.display='block'; return false;" style="text-decoration: none;">
+                <button class="btn btn-primary" style="height: 80px; padding: 10px 20px;">
+                    <i class="fa fa-upload"></i><br>
+                    <strong>Cargar<br>Excel Masivo</strong>
+                </button>
+            </a>
+        </div>
+        
+        <!-- Formulario de carga oculto -->
+        <div id="uploadForm" style="display: none; margin-top: 20px; padding: 20px; background-color: #f8f9fa; border-radius: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <h4 class="text-center"><i class="fa fa-upload"></i> Cargar Archivo Excel</h4>
+            <form action="uploadPrePostnatales.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="excel_file"><strong>Seleccione el archivo Excel (.xlsx):</strong></label>
+                    <input type="file" name="excel_file" id="excel_file" class="form-control" accept=".xlsx,.xls" required>
+                    <small class="form-text text-muted">
+                        El archivo debe seguir el formato de la plantilla descargada.
+                    </small>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-upload"></i> Subir y Procesar
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('uploadForm').style.display='none'">
+                        <i class="fa fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+        <a href="../../access.php"><img src='../../img/atras.png' width="72" height="72" title="Regresar" /></a>
 
         <?php
 
