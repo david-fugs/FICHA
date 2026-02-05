@@ -108,6 +108,7 @@ class ExcelFormHelper
 
         // FILAS 4+: Datos precargados o filas vacías para llenar
         $startRow = 4;
+        $maxRow = $startRow + 100; // 100 filas disponibles
         
         if (isset($config['preloadQuery']) && !empty($config['preloadQuery'])) {
             // Precargar datos de estudiantes
@@ -127,25 +128,22 @@ class ExcelFormHelper
                         }
                         
                         $sheet->setCellValue($cellRef, $value);
-                        
-                        // Aplicar validaciones y estilos
-                        $this->applyCellRules($sheet, $cellRef, $field, $dataSheet);
-                        
                         $col++;
                     }
                     $row++;
                 }
+                $maxRow = max($maxRow, $row + 50); // Extender si hay muchos datos precargados
             }
         }
         
-        // Agregar al menos 100 filas vacías para llenar manualmente
-        for ($row = $startRow; $row < $startRow + 100; $row++) {
-            $col = 0;
-            foreach ($config['fields'] as $field) {
-                $cellRef = $this->getColumnLetter($col) . $row;
-                $this->applyCellRules($sheet, $cellRef, $field, $dataSheet);
-                $col++;
-            }
+        // Aplicar estilos y validaciones a RANGOS (mucho más eficiente)
+        $col = 0;
+        foreach ($config['fields'] as $field) {
+            $colLetter = $this->getColumnLetter($col);
+            $rangeRef = $colLetter . $startRow . ':' . $colLetter . $maxRow;
+            
+            $this->applyCellRulesToRange($sheet, $rangeRef, $field, $dataSheet);
+            $col++;
         }
 
         // Ocultar hoja de datos
@@ -172,6 +170,44 @@ class ExcelFormHelper
     /**
      * Aplica reglas de validación y estilo a una celda
      */
+    /**
+     * Aplica estilos y validaciones a un RANGO de celdas (más eficiente)
+     */
+    private function applyCellRulesToRange($sheet, $rangeRef, $field, $dataSheet)
+    {
+        // Aplicar bordes al rango
+        $sheet->getStyle($rangeRef)->applyFromArray([
+            'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN, 'color' => ['rgb' => 'CCCCCC']]]
+        ]);
+
+        // Campos de solo lectura
+        if (isset($field['readonly']) && $field['readonly']) {
+            $sheet->getStyle($rangeRef)->applyFromArray([
+                'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['rgb' => 'E7E6E6']],
+                'font' => ['color' => ['rgb' => '7F7F7F']]
+            ]);
+        }
+
+        // Aplicar validación según tipo de campo - DIRECTAMENTE AL RANGO
+        if ($field['type'] === 'select' && isset($field['options'])) {
+            $normalize = isset($field['normalize']) ? $field['normalize'] : null;
+            $this->addDropdownValidation($sheet, $rangeRef, $field['options'], $dataSheet, $field['name'], $normalize);
+        } elseif ($field['type'] === 'multiselect' && isset($field['options'])) {
+            $this->addMultiSelectValidation($sheet, $rangeRef, $field['options'], $dataSheet, $field['name']);
+        } elseif ($field['type'] === 'number') {
+            $this->addNumberValidation($sheet, $rangeRef);
+        } elseif ($field['type'] === 'date') {
+            $this->addDateValidation($sheet, $rangeRef);
+        }
+
+        // Marcar campos obligatorios con color
+        if (isset($field['required']) && $field['required'] && !isset($field['readonly'])) {
+            $sheet->getStyle($rangeRef)->applyFromArray([
+                'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['rgb' => 'FFF2CC']]
+            ]);
+        }
+    }
+
     private function applyCellRules($sheet, $cellRef, $field, $dataSheet)
     {
         // Aplicar bordes
@@ -209,24 +245,46 @@ class ExcelFormHelper
     /**
      * Agrega validación de lista desplegable
      */
-    private function addDropdownValidation($sheet, $cellRef, $options, $dataSheet, $fieldName)
+    private function addDropdownValidation($sheet, $cellRef, $options, $dataSheet, $fieldName, $normalize = null)
     {
         // Guardar opciones en hoja oculta
         static $dataSheetRow = 1;
-        $dataSheetCol = ord('A');
+        static $dataSheetColIndex = 0; // Índice de columna (0 = A, 1 = B, etc.)
         
-        $dataSheet->setCellValue(chr($dataSheetCol) . $dataSheetRow, strtoupper($fieldName));
+        $colLetter = $this->getColumnLetter($dataSheetColIndex);
+        
+        // Escribir encabezado de la lista
+        $dataSheet->setCellValue($colLetter . $dataSheetRow, strtoupper($fieldName));
         $dataSheetRow++;
         
         $startRow = $dataSheetRow;
-        foreach ($options as $option) {
-            $dataSheet->setCellValue(chr($dataSheetCol) . $dataSheetRow, $option);
-            $dataSheetRow++;
+        // Extraer solo los valores (no las claves) para mostrar en el dropdown
+        $displayOptions = array_values($options);
+        foreach ($displayOptions as $option) {
+            if (!empty($option)) {  // No agregar opciones vacías
+                // Aplicar normalización si se especifica
+                $normalizedOption = $option;
+                if ($normalize) {
+                    switch ($normalize) {
+                        case 'lowercase':
+                            $normalizedOption = strtolower(trim($option));
+                            break;
+                        case 'uppercase':
+                            $normalizedOption = strtoupper(trim($option));
+                            break;
+                        case 'titlecase':
+                            $normalizedOption = ucwords(strtolower(trim($option)));
+                            break;
+                    }
+                }
+                $dataSheet->setCellValue($colLetter . $dataSheetRow, $normalizedOption);
+                $dataSheetRow++;
+            }
         }
         $endRow = $dataSheetRow - 1;
 
-        // Crear validación
-        $validation = $sheet->getCell($cellRef)->getDataValidation();
+        // Crear validación y aplicarla al rango completo
+        $validation = new DataValidation();
         $validation->setType(DataValidation::TYPE_LIST);
         $validation->setErrorStyle(DataValidation::STYLE_STOP);
         $validation->setAllowBlank(true);
@@ -237,9 +295,13 @@ class ExcelFormHelper
         $validation->setError('Por favor seleccione un valor de la lista');
         $validation->setPromptTitle('Seleccione');
         $validation->setPrompt('Seleccione un valor de la lista desplegable');
-        $validation->setFormula1('DATOS_SISTEMA!$' . chr($dataSheetCol) . '$' . $startRow . ':$' . chr($dataSheetCol) . '$' . $endRow);
+        $validation->setFormula1('DATOS_SISTEMA!$' . $colLetter . '$' . $startRow . ':$' . $colLetter . '$' . $endRow);
+        $validation->setSqref($cellRef);
+        $sheet->setDataValidation($cellRef, $validation);
         
-        $dataSheetRow++; // Espaciador
+        // Mover a la siguiente columna para la próxima lista
+        $dataSheetRow = 1;
+        $dataSheetColIndex++;
     }
 
     /**
@@ -277,7 +339,7 @@ class ExcelFormHelper
      */
     private function addNumberValidation($sheet, $cellRef)
     {
-        $validation = $sheet->getCell($cellRef)->getDataValidation();
+        $validation = new DataValidation();
         $validation->setType(DataValidation::TYPE_WHOLE);
         $validation->setErrorStyle(DataValidation::STYLE_STOP);
         $validation->setAllowBlank(true);
@@ -289,6 +351,8 @@ class ExcelFormHelper
         $validation->setPrompt('Ingrese un número entero');
         $validation->setOperator(DataValidation::OPERATOR_GREATERTHANOREQUAL);
         $validation->setFormula1('0');
+        $validation->setSqref($cellRef);
+        $sheet->setDataValidation($cellRef, $validation);
     }
 
     /**
@@ -296,7 +360,7 @@ class ExcelFormHelper
      */
     private function addDateValidation($sheet, $cellRef)
     {
-        $validation = $sheet->getCell($cellRef)->getDataValidation();
+        $validation = new DataValidation();
         $validation->setType(DataValidation::TYPE_DATE);
         $validation->setErrorStyle(DataValidation::STYLE_STOP);
         $validation->setAllowBlank(true);
@@ -306,6 +370,8 @@ class ExcelFormHelper
         $validation->setError('Por favor ingrese una fecha válida (dd-mm-yyyy)');
         $validation->setPromptTitle('Fecha');
         $validation->setPrompt('Ingrese una fecha en formato dd-mm-yyyy');
+        $validation->setSqref($cellRef);
+        $sheet->setDataValidation($cellRef, $validation);
     }
 
     /**
@@ -376,23 +442,84 @@ class ExcelFormHelper
                 foreach ($config['fields'] as $index => $field) {
                     $cellValue = $sheet->getCell($this->getColumnLetter($index) . $row)->getValue();
                     
+                    // PRIMERO: Convertir CLAVES numéricas a VALORES (si aplica)
+                    // Si el usuario seleccionó del dropdown Excel, puede guardar índice (0,1,2) o valor
+                    // Necesitamos asegurar que se guarde el VALOR en BD
+                    if ($field['type'] === 'select' && isset($field['options']) && !empty($cellValue)) {
+                        // Para arrays simples [val1, val2, val3], PHP les asigna claves 0,1,2...
+                        // Excel puede guardar estas claves al seleccionar del dropdown
+                        
+                        // Si cellValue es numérico y existe como índice en el array
+                        if (is_numeric($cellValue) && isset($field['options'][$cellValue])) {
+                            // Convertir índice a valor
+                            $cellValue = $field['options'][$cellValue];
+                        }
+                        // Si ya es un valor válido del array, dejarlo como está
+                    }
+                    
+                    // SEGUNDO: Normalizar el valor DESPUÉS de la conversión
+                    if (!empty($cellValue) && isset($field['normalize'])) {
+                        $originalValue = $cellValue; // Para debug
+                        switch ($field['normalize']) {
+                            case 'lowercase':
+                                $cellValue = strtolower(trim($cellValue));
+                                break;
+                            case 'uppercase':
+                                $cellValue = strtoupper(trim($cellValue));
+                                break;
+                            case 'titlecase':
+                                $cellValue = ucwords(strtolower(trim($cellValue)));
+                                break;
+                        }
+                        // Debug temporal
+                        if ($originalValue != $cellValue) {
+                            error_log("NORMALIZACIÓN: '{$field['name']}' de '$originalValue' a '$cellValue'");
+                        }
+                    }
+                    
+                    // TERCERO: Aplicar mapeo de valores (valueMap) si existe
+                    // Esto permite convertir valores mostrados en Excel a valores de BD
+                    // Por ejemplo: 'SI' => '1', 'NO' => '2'
+                    if (!empty($cellValue) && isset($field['valueMap']) && is_array($field['valueMap'])) {
+                        if (isset($field['valueMap'][$cellValue])) {
+                            $originalValue = $cellValue;
+                            $cellValue = $field['valueMap'][$cellValue];
+                            error_log("MAPEO DE VALOR: '{$field['name']}' de '$originalValue' a '$cellValue'");
+                        }
+                    }
+                    
                     // Validar campos obligatorios (solo si no es skipInsert)
-                    if (isset($field['required']) && $field['required'] && empty($cellValue) && !isset($field['skipInsert'])) {
+                    // Usar $cellValue === '' o is_null en lugar de empty() para permitir '0'
+                    if (isset($field['required']) && $field['required'] && ($cellValue === '' || is_null($cellValue)) && !isset($field['skipInsert'])) {
                         $validationErrors[] = "Campo '{$field['label']}' es obligatorio";
                     }
 
-                    // Validar opciones de select
+                    // Validar opciones de select - ACEPTAR TANTO CLAVES COMO VALORES
                     if ($field['type'] === 'select' && !empty($cellValue) && isset($field['options'])) {
-                        if (!in_array($cellValue, $field['options'])) {
-                            $validationErrors[] = "Valor inválido en '{$field['label']}': {$cellValue}";
+                        // Crear lista de opciones válidas antes del mapeo
+                        $validOptions = array_values($field['options']);
+                        
+                        // Si hay valueMap, también validar los valores mapeados
+                        if (isset($field['valueMap'])) {
+                            $validOptions = array_merge($validOptions, array_keys($field['valueMap']));
+                            $validOptions = array_merge($validOptions, array_values($field['valueMap']));
+                        }
+                        
+                        $validOptions = array_unique($validOptions);
+                        
+                        // Validar que el valor (antes o después del mapeo) sea válido
+                        if (!in_array((string)$cellValue, $validOptions, true)) {
+                            $displayOptions = array_unique(array_values($field['options']));
+                            $validationErrors[] = "Valor inválido en '{$field['label']}': '{$cellValue}'. Valores permitidos: " . implode(', ', array_slice($displayOptions, 0, 5));
                         }
                     }
 
                     // Validar opciones de multiselect
                     if ($field['type'] === 'multiselect' && !empty($cellValue) && isset($field['options'])) {
+                        $validOptions = array_values($field['options']);
                         $selectedValues = array_map('trim', explode(',', $cellValue));
                         foreach ($selectedValues as $value) {
-                            if (!in_array($value, $field['options'])) {
+                            if (!in_array($value, $validOptions)) {
                                 $validationErrors[] = "Valor inválido en '{$field['label']}': {$value}";
                             }
                         }
@@ -483,7 +610,6 @@ class ExcelFormHelper
                 $types .= 'd';
             } else {
                 $types .= 's';
-                $value = mb_strtoupper($value); // Convertir a mayúsculas
             }
             
             $bindParams[] = $value;
@@ -503,8 +629,14 @@ class ExcelFormHelper
         }
 
         $result = $stmt->execute();
+        
+        if (!$result) {
+            $error = $stmt->error;
+            $stmt->close();
+            throw new Exception("Error en execute: " . $error);
+        }
+        
         $stmt->close();
-
         return $result;
     }
 
