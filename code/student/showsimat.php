@@ -481,8 +481,8 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
             <div class="input-group">
                 <label class="form-label">Estado del Estudiante</label>
                 <select name="estado_est" class="form-input">
-                    <option value="">Todos los estados</option>
-                    <option value="1" <?php echo (isset($_GET['estado_est']) && $_GET['estado_est'] == '1') ? 'selected' : ''; ?>>Activos</option>
+                    <option value="todos" <?php echo (isset($_GET['estado_est']) && $_GET['estado_est'] == 'todos') ? 'selected' : ''; ?>>Todos los estados</option>
+                    <option value="1" <?php echo (!isset($_GET['estado_est']) || (isset($_GET['estado_est']) && $_GET['estado_est'] == '1')) ? 'selected' : ''; ?>>Activos</option>
                     <option value="0" <?php echo (isset($_GET['estado_est']) && $_GET['estado_est'] == '0') ? 'selected' : ''; ?>>Inactivos</option>
                 </select>
             </div>
@@ -512,11 +512,11 @@ require_once("../../zebra.php");
 @$num_doc_est = ($_GET['num_doc_est']);
 @$nom_ape_est = ($_GET['nom_ape_est']);
 @$grado_est = ($_GET['grado_est']);
-@$estado_est = ($_GET['estado_est']);
+@$estado_est = isset($_GET['estado_est']) ? $_GET['estado_est'] : '1'; // Por defecto mostrar activos
 
 // Construir la condición del filtro de estado
 $filtro_estado = "";
-if ($estado_est !== '' && $estado_est !== null) {
+if ($estado_est !== '' && $estado_est !== null && $estado_est !== 'todos') {
     $filtro_estado = " AND estudiantes.estado_est = '$estado_est'";
 }
 
