@@ -1,0 +1,147 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                                                                       ║
+║         SISTEMA DE CARGA MASIVA EXCEL - FICHA                        ║
+║                                                                       ║
+║         Versión 1.0 - Enero 2026                                     ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+
+🚀 INICIO RÁPIDO
+═════════════════════════════════════════════════════════════════════
+
+Para implementar este sistema en un nuevo formulario:
+
+1. Abrir:  GUIA_RAPIDA.md
+2. Seguir los 5 pasos
+3. ¡Listo!
+
+Tiempo estimado: 15-30 minutos por formulario
+
+
+📚 ARCHIVOS PRINCIPALES
+═════════════════════════════════════════════════════════════════════
+
+⭐ INDICE.md
+   → Índice completo de todos los archivos del sistema
+   → Leer primero para entender la estructura
+
+⭐ GUIA_RAPIDA.md
+   → Implementación paso a paso (5 pasos)
+   → Ejemplos de configuración
+   → Solución de problemas
+
+📖 README_CARGA_MASIVA.md
+   → Documentación completa y detallada
+   → Todos los tipos de campos
+   → Ejemplos avanzados
+
+🖼️ EJEMPLO_VISUAL_EXCEL.md
+   → Visualización de cómo se ve el Excel generado
+   → Colores, formatos, validaciones
+
+📋 TEMPLATE_downloadTemplate.php
+   → Plantilla para copiar (descarga)
+
+📋 TEMPLATE_upload.php
+   → Plantilla para copiar (carga)
+
+📋 TEMPLATE_botones_html.txt
+   → Código HTML para páginas de listado
+
+
+🔧 SISTEMA
+═════════════════════════════════════════════════════════════════════
+
+✅ ExcelFormHelper.php
+   → Clase principal (NO MODIFICAR sin necesidad)
+   → Funciona para todos los formularios
+
+✅ temp/
+   → Carpeta para archivos temporales
+   → Se crea automáticamente
+
+
+📁 EJEMPLO IMPLEMENTADO
+═════════════════════════════════════════════════════════════════════
+
+Ver implementación completa en:
+  - code/student/downloadTemplatePrePostnatales.php
+  - code/student/uploadPrePostnatales.php
+  - code/student/checkprePostnatales.php
+
+Este es el formulario de referencia. Úsalo como ejemplo.
+
+
+🎯 ¿QUÉ HACE ESTE SISTEMA?
+═════════════════════════════════════════════════════════════════════
+
+1. DESCARGAR PLANTILLA EXCEL
+   - Genera archivo Excel con formato profesional
+   - Incluye validaciones (dropdowns, números, etc.)
+   - Precarga datos de estudiantes
+   - Instrucciones claras
+
+2. LLENAR DATOS
+   - Usuario llena Excel con 1 o más estudiantes
+   - Usa dropdowns para campos select
+   - Datos precargados en campos de solo lectura
+
+3. SUBIR ARCHIVO
+   - Sistema valida todos los datos
+   - Inserta en base de datos automáticamente
+   - Muestra reporte detallado (éxitos y errores)
+
+
+✅ CARACTERÍSTICAS
+═════════════════════════════════════════════════════════════════════
+
+✓ Reutilizable en todos los formularios
+✓ Validaciones automáticas
+✓ Formato profesional
+✓ Carga masiva (100+ registros)
+✓ Campos automáticos (fecha, usuario, etc.)
+✓ Datos precargados de estudiantes
+✓ Listas desplegables desde BD
+✓ Reporte de errores detallado
+
+
+🚦 PRÓXIMOS PASOS
+═════════════════════════════════════════════════════════════════════
+
+Para implementar en un nuevo formulario:
+
+PASO 1: Leer GUIA_RAPIDA.md (5 minutos)
+
+PASO 2: Copiar plantillas
+        - TEMPLATE_downloadTemplate.php
+        - TEMPLATE_upload.php
+
+PASO 3: Configurar campos según tu formulario
+
+PASO 4: Agregar botones en página de listado
+        (código en TEMPLATE_botones_html.txt)
+
+PASO 5: Probar con 2-3 registros
+
+
+📞 SOPORTE
+═════════════════════════════════════════════════════════════════════
+
+Problema o duda:
+  → README_CARGA_MASIVA.md (Sección: Solución de Problemas)
+
+Ejemplo de código:
+  → downloadTemplatePrePostnatales.php
+
+Configuración de campos:
+  → GUIA_RAPIDA.md (Sección: Configuración de Campos)
+
+
+═════════════════════════════════════════════════════════════════════
+
+¡Sistema listo para usar! 🎉
+
+Empieza leyendo: INDICE.md o GUIA_RAPIDA.md
+
+═════════════════════════════════════════════════════════════════════

@@ -454,9 +454,9 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                 <span class="spinner-border spinner-border-sm"></span>
                 ACTUALIZAR INFORMACIÓN PREESCOLAR
             </button>
-            <button type="reset" class="btn btn-outline-dark mt-5 mb-4" role='link' onclick="history.back();">
+            <a href="../showPreescolar.php" class="btn btn-outline-dark mt-5 mb-4" role='link'>
                 <img src='../../../img/atras.png' width=27 height=27> REGRESAR
-            </button>
+            </a>
         </form>
     </div>
 </body>

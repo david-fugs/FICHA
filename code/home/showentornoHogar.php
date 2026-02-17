@@ -102,6 +102,16 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
 
             </form>
         </div>
+        
+        <!-- Botones de Descarga y Carga Masiva Excel -->
+        <div class="text-center my-4">
+            <a href="downloadTemplateEntornoHogar.php" class="btn btn-success btn-lg mr-3" title="Descargar plantilla Excel para carga masiva">
+                <i class="fas fa-file-excel"></i> Descargar Plantilla Excel
+            </a>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadModal" title="Subir archivo Excel con datos">
+                <i class="fas fa-upload"></i> Subir Archivo Excel
+            </button>
+        </div>
     </div>
     <br/><a href="../../access.php"><img src='../../img/atras.png' width="72" height="72" title="Regresar" /></a>
 
@@ -214,6 +224,54 @@ if ($res) {
             </div>
         </div>
         </section>
+        
+        <!-- Modal para Subir Archivo Excel -->
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="uploadModalLabel">
+                            <i class="fas fa-upload"></i> Subir Archivo Excel
+                        </h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="uploadEntornoHogar.php" method="POST" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <strong>Instrucciones:</strong>
+                                <ol class="mb-0 mt-2">
+                                    <li>Descargue primero la plantilla Excel</li>
+                                    <li>Complete los datos de los estudiantes</li>
+                                    <li>Guarde el archivo Excel</li>
+                                    <li>Seleccione y suba el archivo completado</li>
+                                </ol>
+                            </div>
+                            <div class="form-group">
+                                <label for="excel_file"><strong>Seleccione el archivo Excel:</strong></label>
+                                <input type="file" class="form-control-file" id="excel_file" name="excel_file" accept=".xlsx,.xls" required>
+                                <small class="form-text text-muted">Formatos aceptados: .xlsx, .xls</small>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                <i class="fas fa-times"></i> Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Subir Archivo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scripts necesarios para Bootstrap Modal -->
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script src="../student/js/app.js"></script>
         <script src="https://www.jose-aguilar.com/scripts/fontawesome/js/all.min.js" data-auto-replace-svg="nest"></script>
 

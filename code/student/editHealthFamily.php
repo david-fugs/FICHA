@@ -72,7 +72,13 @@ function Si1No2($value)
         //formulario
         $sql_formulario =  mysqli_query($mysqli, "SELECT * FROM familiasalud WHERE id_salud_familiaSalud = '$id_registro' ");
         $res_formulario =  mysqli_fetch_array($sql_formulario);
+
+        //traer nombre del estudiante con el num_doc_est
+        $sql_nombre = mysqli_query($mysqli, "SELECT nom_ape_est FROM estudiantes WHERE num_doc_est = '$num_doc_est' ");
+        $res_nombre = mysqli_fetch_array($sql_nombre);
+        
     }
+
     ?>
 
     <div class="container">
@@ -160,7 +166,7 @@ function Si1No2($value)
 
                     <div class="col-12 col-sm-9">
                         <label for="nom_ape_est">NOMBRES Y APELLIDOS COMPLETOS DEL ESTUDIANTE:</label>
-                        <input type='text' name='nom_ape_est' id="nom_ape_est" class='form-control' value='<?php echo utf8_encode($res_formulario['nom_ape_est']); ?>' readonly />
+                        <input type='text' name='nom_ape_est' id="nom_ape_est" class='form-control' value='<?php echo $res_nombre['nom_ape_est'] ?>' readonly />
                     </div>
                 </div>
             </div>
@@ -332,7 +338,7 @@ function Si1No2($value)
                         <select class="form-control" name="beneficiario_pae_familiaSalud" id="beneficiario_pae_familiaSalud">
                             <option value="" <?php if($res_formulario['beneficiario_pae_familiaSalud'] == '') echo 'selected';  ?> ></option>
                             <option value=1  <?php if($res_formulario['beneficiario_pae_familiaSalud'] == 1) echo 'selected';  ?> >SI</option>
-                            <option value=0  <?php if($res_formulario['beneficiario_pae_familiaSalud'] == 2) echo 'selected';  ?> >NO</option>
+                            <option value=0  <?php if($res_formulario['beneficiario_pae_familiaSalud'] == 0) echo 'selected';  ?> >NO</option>
                         </select>
                     </div>
 
