@@ -94,6 +94,22 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
+                <i class="fa-solid fa-file-signature"></i>
+              </span>
+
+              <span class="navlink">Consentimiento Informado</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/student/showConsentimientoInformado.php" class="nav_link sublink">Aplicar Encuesta</a>
+              <a href="code/student/checkConsentimientoInformado.php" class="nav_link sublink">Encuestas Realizadas</a>
+            </ul>
+          </li>
+
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
                 <i class="fa-solid fa-baby-carriage"></i>
               </span>
 
@@ -541,6 +557,22 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
+                <i class="fa-solid fa-file-signature"></i>
+              </span>
+
+              <span class="navlink">Consentimiento Informado</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/student/showConsentimientoInformado.php" class="nav_link sublink">Aplicar Encuesta</a>
+              <a href="code/student/checkConsentimientoInformado.php" class="nav_link sublink">Encuestas Realizadas</a>
+            </ul>
+          </li>
+
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
                 <i class="fa-solid fa-baby-carriage"></i>
               </span>
 
@@ -713,6 +745,21 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
       <div class="menu_content">
         <ul class="menu_items">
           <div class="menu_title menu_dahsboard"></div>
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+                <i class="fa-solid fa-file-signature"></i>
+              </span>
+              <span class="navlink">Consentimiento Informado</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="code/student/showConsentimientoInformado.php" class="nav_link sublink">Aplicar Encuesta</a>
+              <a href="code/student/checkConsentimientoInformado.php" class="nav_link sublink">Encuestas Realizadas</a>
+            </ul>
+          </li>
+
           <li class="item">
             <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
