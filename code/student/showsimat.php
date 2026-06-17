@@ -527,7 +527,7 @@ $query = "SELECT estudiantes.*, usuarios.*, ie.*
   INNER JOIN usuarios ON estudiantes.id_usu = usuarios.id
   WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
   AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-  AND (estudiantes.grado_est LIKE '%$grado_est%')
+  AND (estudiantes.grado_est = '$grado_est')
   AND ie.cod_dane_ie = $cod_dane_ie 
   $filtro_estado
   ORDER BY estudiantes.estado_est DESC, estudiantes.num_doc_est ASC";
@@ -546,7 +546,7 @@ if ($res) {
          INNER JOIN usuarios ON estudiantes.id_usu = usuarios.id
          WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
          AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-         AND (estudiantes.grado_est LIKE '%$grado_est%')
+         AND (estudiantes.grado_est = '$grado_est')
          AND ie.cod_dane_ie = $cod_dane_ie 
          $filtro_estado
          ORDER BY estudiantes.estado_est DESC, estudiantes.num_doc_est ASC 

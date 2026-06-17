@@ -104,6 +104,8 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
             <ul class="menu_items submenu">
               <a href="code/student/showConsentimientoInformado.php" class="nav_link sublink">Aplicar consentimiento</a>
               <a href="code/student/checkConsentimientoInformado.php" class="nav_link sublink">Ver y descargar</a>
+              <a href="code/student/downloadConsentimientoInformadoWord.php" class="nav_link sublink"> Descargar Plantilla Word 
+              </a>
             </ul>
           </li>
 

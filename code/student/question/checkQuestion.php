@@ -99,7 +99,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
           INNER JOIN ie ON ieSede.cod_dane_ie = ie.cod_dane_ie 
           WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
           AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-          AND (estudiantes.grado_est LIKE '%$grado_est%')
+          AND (estudiantes.grado_est = '$grado_est')
           AND fecha_dig_preguntas >= '2023-10-01' 
           AND ie.cod_dane_ie = $cod_dane_ie 
           GROUP BY preguntas.num_doc_est 
@@ -140,7 +140,7 @@ $cod_dane_ie = $_SESSION['cod_dane_ie'];
              INNER JOIN ie ON ieSede.cod_dane_ie = ie.cod_dane_ie 
              WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
              AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-             AND (estudiantes.grado_est LIKE '%$grado_est%')
+             AND (estudiantes.grado_est = '$grado_est')
              AND ie.cod_dane_ie = $cod_dane_ie 
              GROUP BY preguntas.num_doc_est 
              ORDER BY preguntas.num_doc_est ASC 

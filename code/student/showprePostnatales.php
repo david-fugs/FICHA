@@ -164,7 +164,7 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
           INNER JOIN usuarios ON estudiantes.id_usu = usuarios.id
           WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
           AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-          AND (estudiantes.grado_est LIKE '%$grado_est%')
+          AND (estudiantes.grado_est = '$grado_est')
           AND ie.cod_dane_ie = $cod_dane_ie 
             AND estudiantes.estado_prepostnatales = 0        
   ORDER BY ISNULL(prePostnatales.fecha_alta_prePostnatales) DESC, prePostnatales.fecha_alta_prePostnatales ASC, estudiantes.num_doc_est ASC";
@@ -185,7 +185,7 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                  INNER JOIN usuarios ON estudiantes.id_usu = usuarios.id
                  WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
                  AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-                 AND (estudiantes.grado_est LIKE '%$grado_est%')
+                 AND (estudiantes.grado_est = '$grado_est')
                  AND ie.cod_dane_ie = $cod_dane_ie 
                  AND estudiantes.estado_prepostnatales = 0
                  ORDER BY ISNULL(prePostnatales.fecha_alta_prePostnatales) DESC, prePostnatales.fecha_alta_prePostnatales ASC, estudiantes.num_doc_est ASC

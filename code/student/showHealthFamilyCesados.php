@@ -127,7 +127,7 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
           LEFT JOIN familiasalud ON estudiantes.num_doc_est = familiasalud.num_doc_est
           WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
           AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-          AND (estudiantes.grado_est LIKE '%$grado_est%')
+          AND (estudiantes.grado_est = '$grado_est')
           AND ie.cod_dane_ie = $cod_dane_ie 
             AND estudiantes.estado_familiasalud = 1   
           ORDER BY ISNULL(familiasalud.fechacreacion_familiasalud) ASC, estudiantes.num_doc_est ASC";
@@ -159,7 +159,7 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
             LEFT JOIN familiasalud ON estudiantes.num_doc_est = familiasalud.num_doc_est
             WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
             AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-            AND (estudiantes.grado_est LIKE '%$grado_est%')
+            AND (estudiantes.grado_est = '$grado_est')
             AND ie.cod_dane_ie = $cod_dane_ie
             AND estudiantes.estado_familiasalud = 1 
             GROUP BY estudiantes.num_doc_est
