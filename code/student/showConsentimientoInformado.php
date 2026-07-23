@@ -150,9 +150,9 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
           LEFT JOIN consentimientoInformado ON estudiantes.num_doc_est = consentimientoInformado.num_doc_est
           INNER JOIN usuarios ON estudiantes.id_usu = usuarios.id
           WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
-          AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-          AND (estudiantes.grado_est = '$grado_est')
-          AND ie.cod_dane_ie = $cod_dane_ie 
+          AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%')
+          AND (estudiantes.grado_est = '$grado_est' OR '$grado_est' = '')
+          AND ie.cod_dane_ie = $cod_dane_ie
             AND estudiantes.estado_consentimientoInformado = 0        
   ORDER BY ISNULL(consentimientoInformado.fecha_alta_consentimientoInformado) DESC, consentimientoInformado.fecha_alta_consentimientoInformado ASC, estudiantes.num_doc_est ASC";
         $res = $mysqli->query($query);
@@ -171,9 +171,9 @@ $cod_dane_ie  = $_SESSION['cod_dane_ie'];
                  LEFT JOIN consentimientoInformado ON estudiantes.num_doc_est = consentimientoInformado.num_doc_est
                  INNER JOIN usuarios ON estudiantes.id_usu = usuarios.id
                  WHERE (estudiantes.num_doc_est LIKE '%$num_doc_est%') 
-                 AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%') 
-                 AND (estudiantes.grado_est = '$grado_est')
-                 AND ie.cod_dane_ie = $cod_dane_ie 
+                 AND (estudiantes.nom_ape_est LIKE '%$nom_ape_est%')
+                 AND (estudiantes.grado_est = '$grado_est' OR '$grado_est' = '')
+                 AND ie.cod_dane_ie = $cod_dane_ie
                  AND estudiantes.estado_consentimientoInformado = 0
                  ORDER BY ISNULL(consentimientoInformado.fecha_alta_consentimientoInformado) DESC, consentimientoInformado.fecha_alta_consentimientoInformado ASC, estudiantes.num_doc_est ASC
                  LIMIT " . (($paginacion->get_page() - 1) * $resul_x_pagina) . "," . $resul_x_pagina;
